@@ -6,11 +6,16 @@ import taskRoutes from "./routes/taskRoutes.js";
 import { errorHandler } from "./middleware/errorMiddleware.js";
 
 const app = express();
-app.use(cors());
+// app.use(cors({
+//   origin: "https://your-frontend.vercel.app",
+//   credentials: true
+// }));
+app.use(cors())
 app.use(express.json());
-app.use(errorHandler);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/test", testRoutes);
 app.use("/api/v1/tasks", taskRoutes);
+
+app.use(errorHandler);
 
 export default app;
